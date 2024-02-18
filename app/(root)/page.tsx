@@ -2,7 +2,7 @@ import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
-const Home = async () => {
+const Home = () => {
   return (
     <div className="w-full flex flex-col gap-y-3 items-center justify-center pt-10 pb-2">
       <h2 className="text-2xl sm:text-3xl font-bold text-primary text-center">
