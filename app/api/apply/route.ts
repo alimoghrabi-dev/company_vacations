@@ -1,3 +1,4 @@
+import { connectToDatabase } from "@/database/models/connect";
 import Type from "@/database/models/type.model";
 import User from "@/database/models/user.model";
 import Vacation from "@/database/models/vacation.model";
@@ -17,6 +18,8 @@ export async function POST(request: Request) {
     } = await request.json();
 
     const session = await getServerSession(authOptions);
+
+    connectToDatabase();
 
     if (!typeId || !duration || !phoneNumber || !contactEmail) {
       return new Response("Missing fields", { status: 400 });
@@ -45,6 +48,8 @@ export async function POST(request: Request) {
 export async function DELETE(request: Request) {
   try {
     const session: UserSession | null = await getServerSession(authOptions);
+
+    connectToDatabase();
 
     if (!session) {
       return new Response("Unauthenticated", { status: 401 });

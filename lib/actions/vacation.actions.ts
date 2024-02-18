@@ -1,13 +1,11 @@
-"use server";
-
-import { ConnectToDB } from "@/database/connection";
+import { connectToDatabase } from "@/database/models/connect";
 import Vacation from "@/database/models/vacation.model";
 
 export async function getCurrentUserVacation(
   userId: string | null | undefined
 ) {
   try {
-    ConnectToDB();
+    connectToDatabase();
 
     const vacation = await Vacation.findOne({ userId });
 
@@ -21,7 +19,7 @@ export async function getCurrentUserVacation(
 
 export async function getAllVacationsApplied() {
   try {
-    ConnectToDB();
+    connectToDatabase();
 
     const vacations = await Vacation.find({});
 

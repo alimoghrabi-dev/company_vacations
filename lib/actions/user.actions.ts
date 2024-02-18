@@ -1,11 +1,11 @@
-import { ConnectToDB } from "@/database/connection";
+import { connectToDatabase } from "@/database/models/connect";
 import User from "@/database/models/user.model";
 
 export async function getUserById(params: {
   userId: string | undefined | null;
 }) {
   try {
-    ConnectToDB();
+    connectToDatabase();
 
     const user = await User.findById(params.userId);
 

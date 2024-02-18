@@ -2,7 +2,9 @@ import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcryptjs from "bcryptjs";
 import User from "@/database/models/user.model";
-import { ConnectToDB } from "@/database/connection";
+import { connectToDatabase } from "@/database/models/connect";
+
+connectToDatabase();
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -18,8 +20,6 @@ export const authOptions: AuthOptions = {
           email: "",
           password: "",
         };
-
-        ConnectToDB();
 
         const user = await User.findOne({ email });
 

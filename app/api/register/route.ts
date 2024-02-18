@@ -1,12 +1,12 @@
-import { ConnectToDB } from "@/database/connection";
+import { connectToDatabase } from "@/database/models/connect";
 import User from "@/database/models/user.model";
 import bcryptjs from "bcryptjs";
 
 export async function POST(request: Request) {
-  ConnectToDB();
-
   try {
     const { name, email, password } = await request.json();
+
+    connectToDatabase();
 
     if (!name || !email || !password) {
       return new Response("Missing fields", { status: 400 });
